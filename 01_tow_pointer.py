@@ -1,6 +1,6 @@
 class Solution:
     
-    def reverseWord_manual(word):
+    def reverseWord_manual(self, word):
         res = ''
         left, rigth = 0, 0
         
