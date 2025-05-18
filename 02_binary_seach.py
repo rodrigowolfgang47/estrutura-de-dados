@@ -9,29 +9,16 @@ class Solution(object):
         """
         #abs(i - j) <= k
         #nums[i] == nums[j]
-        
         nums = self._list_treatment(nums)
         k = int(k)
-        position_in_list = {}
-        validation  = True
+        visto_por_ultimo = {}
         
-        for i in range(len(nums)):
-            #se o valor já estiver na lista de picoes
-            if nums[i] in position_in_list:
-                #então ele começa a verificar se o valor não viola a condição de ser menor que o numero passado em k
-                j = position_in_list[nums[i]]
-                cal = abs(i - j)
-                if (cal > k):
-                    validation = False
-                    return validation
-            # numero = k
-            # posição = v
-            position_in_list[nums[i]] = i
+        for i, num in enumerate(nums):
+            if num in visto_por_ultimo and abs(i - visto_por_ultimo[num]) <= k:
+                return True
+            visto_por_ultimo[num] = i
+        return False
             
-        #retorna a validação
-        return validation
-                        
-                
     def _list_treatment(self, s_lista:str) -> List[int]:
         """This function transform a string list from input in interger list"""
         int_list = self._remove_char(s_lista)
